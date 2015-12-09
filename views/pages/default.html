@@ -10,7 +10,7 @@
 {% block upperClass %}bg-gold{% endblock %}
 
 {% block headerContent %}
-  <div class="demo-pageheader">
+  <div class="demo-pageheader"> 
     <div class="column column--vertical-center width-50">
       <h3 class="hide-desktop page-title">{{page.title}}</h3>
       <ul class="subnav-items hide-desktop">
@@ -32,7 +32,7 @@
     </div>{#
   #}<div class="column column--vertical-center width-50 align-right">
       <div class="demo-image-sticker">
-        {{ aposSingleton(page, 'sticker', 'slideshow', { filter: false, limit: 1, aspectRatio: [1, 1] }) }}
+        {{ aposSingleton(page, 'splash', 'slideshow', { filter: false, limit: 1, aspectRatio: [1, 1] }) }}
         <img class="demo-apos-shadow image-sticker" src="/images/demo_logo_apos_shadow.png" alt="Apostrophe">
       </div>
     </div>
@@ -57,6 +57,7 @@
       </div>{#
     #}<div class="demo-main inline-top width-75">
         {{ aposArea(page, 'main', {
+		  textOnly: true,
           controls: ['style', 'bold', 'italic', 'createLink', 'unlink', 'slideshow', 'video'],
           styles: [
             { value: 'p', label: 'Text' },
