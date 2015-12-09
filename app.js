@@ -12,6 +12,12 @@ site.init({
   title: 'Sandbox',
   sessionSecret: 'apostrophe sandbox demo party',
   adminPassword: 'demo',
+  // Set the port for deployment purposes.
+  // This is overwritten in local.js
+  port:4005 ,
+  db: {
+    uri: 'mongodb://localhost:27017/sandbox'
+  },
 
   // Force a2 to prefix all of its URLs. It still
   // listens on its own port, but you can configure
@@ -25,6 +31,9 @@ site.init({
   // the tag editor modal via the admin bar. Sometimes useful
   // if your folksonomy has gotten completely out of hand
   lockTags: false,
+  
+  // Let's minify the site for Live & Staging.
+  minify: true,
 
   // Give users a chance to log in if they attempt to visit a page
   // which requires login
@@ -76,8 +85,11 @@ site.init({
     // Styles required by the new editor, must go FIRST
     'apostrophe-editor-2': {},
     'apostrophe-ui-2': {},
-	'apostrophe-snippets': {},
+	'apostrophe-snippets': {
+		'enableExport': true
+	},
     'apostrophe-blog-2': {
+	 'enableExport': true,
       perPage: 5,
       pieces: {
         addFields: [
@@ -126,17 +138,9 @@ site.init({
     scripts: ['_site-compiled']
   },
 
-  afterInit: function(callback) {
-    // We're going to do a special console message now that the
-    // server has started. Are we in development or production?
-    var locals = require('./data/local');
-    if(locals.development || !locals.minify) {
-      console.error('Apostrophe Sandbox is running in development.');
-    } else {
-      console.error('Apostrophe Sandbox is running in production.');
-    }
-
-    callback(null);
-  }
+  // afterInit: function(callback) {
+  // // Put Code to run afterInit
+  //   callback(null);
+  // }
 
 });
